@@ -1,0 +1,50 @@
+/* Base Reset */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #222;
+  color: #fff;
+}
+
+.dashboard h1 {
+  margin-inline: 40px;
+}
+
+.dashboard-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dashboard-links li {
+  margin: 15px 0;
+}
+
+.dashboard-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+  display: block;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dashboard-links a:hover,
+.dashboard-links a.active {
+  background-color: #969ba1;
+  color: #ecf0f1;
+}
+
+.main-content {
+  padding: clamp(20px, 5vw, 25px);
+  background-color: #1f1e1e;
+  display: inline-block;
+  margin: 40px;
+  border-radius: 10px;
+}
+
+.main-content h1 {
+  font-size: clamp(15px, 5vw, 30px);
+  margin-bottom: 20px;
+}

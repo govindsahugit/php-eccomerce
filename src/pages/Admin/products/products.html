@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../../components/navbar.css" />
+    <link rel="stylesheet" href="products.css" />
+    <title>Products</title>
+  </head>
+  <body>
+    <nav id="navbar"></nav>
+    <br />
+    <div class="container">
+      <div id="create-product">
+        <h1>Create New Product</h1>
+        <br />
+        <form id="create-product-form">
+          <div class="form-group">
+            <label for="name">Product Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter product name"
+              required />
+          </div>
+          <div class="form-group">
+            <label for="price">Price</label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              placeholder="Enter product price"
+              required />
+          </div>
+          <div class="form-group">
+            <label for="category">Select category</label>
+            <select required name="category" id="category"></select>
+          </div>
+          <div class="form-group">
+            <label for="image">Product Image</label>
+            <input
+              type="file"
+              id="imageInput"
+              name="image"
+              accept="image/*"
+              required />
+            <br />
+            <br />
+            <img
+              src=""
+              id="create-preview-img"
+              alt="Current Product Image"
+              width="300" />
+          </div>
+          <button type="submit" class="submit-btn">Create Product</button>
+        </form>
+      </div>
+      <div id="update-product">
+        <h1>Update Product</h1>
+        <br />
+        <form id="update-product-form">
+          <div class="form-group">
+            <label for="name">Product Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter product name"
+              required />
+          </div>
+          <div class="form-group">
+            <label for="price">Price</label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              placeholder="Enter product price"
+              required />
+          </div>
+          <div class="form-group">
+            <label for="category">Select category</label>
+            <select name="category" id="category-upt"></select>
+          </div>
+          <div class="form-group">
+            <label for="image">Product Image</label>
+            <br />
+            <div class="img-input">
+              <span>Change Image</span>
+              <input
+                type="file"
+                id="update-img"
+                name="image"
+                accept="image/*" />
+            </div>
+            <br />
+            <br />
+            <img
+              src=""
+              id="preview-img"
+              alt="Current Product Image"
+              width="300" />
+          </div>
+          <button type="submit" class="submit-btn">Update Product</button>
+        </form>
+      </div>
+      <div id="products-list" class="products-list"></div>
+    </div>
+    <script type="module" src="products.js"></script>
+  </body>
+</html>
