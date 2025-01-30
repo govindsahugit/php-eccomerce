@@ -8,10 +8,18 @@ export function insertNavbar(targetId, imgPath) {
         <div class="nav-right">
           <ul class="nav-links">
             <li><a href="/">HOME</a></li>
-            <li>
+            ${
+              localStorage.getItem("user")
+                ? `
+              <li>
               <a href="/src/pages/Admin/dashboard/dashboard.html">ADMIN</a>
             </li>
-            <li><a id="logout-btn" href="#">LOGOUT</a></li>
+            <li>
+              <a class="logout-btn" href="#">LOGOUT</a> 
+            </li>
+                `
+                : ""
+            }
           </ul>
         </div>
         <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>

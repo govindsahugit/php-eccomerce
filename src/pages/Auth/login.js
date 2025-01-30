@@ -1,3 +1,9 @@
+import { handleLogout } from "../../components/Logout";
+import { insertNavbar } from "../../components/Navbar";
+
+insertNavbar("navbar", "/logo.png");
+handleLogout(document.querySelector("#navbar"))
+
 const loginForm = document.getElementById("login-form");
 
 loginForm.addEventListener("submit", async function (event) {

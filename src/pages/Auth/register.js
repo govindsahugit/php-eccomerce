@@ -1,4 +1,10 @@
+import { handleLogout } from "../../components/Logout";
+import { insertNavbar } from "../../components/Navbar";
+
 const registerForm = document.getElementById("registerForm");
+
+insertNavbar("navbar", "/logo.png");
+handleLogout(document.querySelector("#navbar"));
 
 registerForm.addEventListener("submit", async function (event) {
   event.preventDefault();
@@ -14,7 +20,7 @@ registerForm.addEventListener("submit", async function (event) {
     const res = await response.json();
 
     if (res.success) {
-      window.location.href = "./login";
+      window.location.href = "/src/pages/Auth/login.html";
     } else {
       alert(res.message);
       return;

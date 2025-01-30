@@ -11,7 +11,52 @@
   <body>
     <div id="app">
       <nav id="navbar"></nav>
-      <h1>HELLO WORLD!</h1>
+      <header>
+        <div id="categories-container"></div>
+      </header>
+      <main id="main">
+        <div id="products-container"></div>
+        <div id="cart-container-wrapper">
+          <div id="cart-container"></div>
+          <div id="place-order-ele">
+            <div class="total-amount">Total Rs.<span>0</span></div>
+            <button id="confirm-order">Proceed</button>
+          </div>
+        </div>
+      </main>
+    </div>
+    <div class="order-form">
+      <form class="order-submit-form">
+        <div class="order-form-group">
+          <label for="customer-name">Name</label><br />
+          <input
+            type="text"
+            id="customer-name"
+            placeholder="Enter your name"
+            name="name"
+            required />
+        </div>
+        <div class="order-form-group">
+          <label for="phone-number">Phone</label> <br />
+          <input
+            type="text"
+            id="phone-number"
+            placeholder="Enter your phone number"
+            name="phone"
+            required />
+        </div>
+        <div class="order-form-group">
+          <label for="order-address">Address</label> <br />
+          <textarea
+            id="order-address"
+            placeholder="e.g chakarbhata ward no.12 near ganesh mandir"
+            name="address"
+            required></textarea>
+        </div>
+        <div class="order-form-group">
+          <input type="button" id="order-submit-btn" value="Confirm order" />
+        </div>
+      </form>
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>

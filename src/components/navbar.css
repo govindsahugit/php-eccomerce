@@ -64,9 +64,9 @@ html {
   color: #ffef74;
 }
 
-#logout-btn {
+.logout-btn {
   background-color: #ffee35;
-  color: #111;
+  color: #111 !important;
   padding: 8px;
   border-radius: 15px;
   font-size: clamp(8px, 4vw, 15px);

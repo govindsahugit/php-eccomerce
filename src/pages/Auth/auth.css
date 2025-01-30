@@ -1,15 +1,22 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: #222;
+  height: 100vh;
+  margin: 0;
+  color: #fff;
+}
+
+main {
+  height: calc(100vh - 100px);
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
 }
 
 .container {
-  background-color: #fff;
+  background-color: #282626;
+  color: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -18,16 +25,16 @@ body {
   box-sizing: border-box;
 }
 
-h1 {
+main h1 {
   text-align: center;
   margin-bottom: 20px;
-  color: #333;
+  color: #fff;
 }
 
 label {
   display: block;
   margin-bottom: 8px;
-  color: #555;
+  color: #fff;
 }
 
 input {
@@ -37,6 +44,8 @@ input {
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
+  color: #fff;
+  background-color: #373737;
 }
 
 button {
@@ -58,4 +67,15 @@ button:hover {
   text-align: center;
   font-size: 14px;
   color: red;
+}
+
+#bottom-link {
+  text-decoration: none;
+  color: #fff;
+  display: inline-block;
+  margin-block: 15px;
+}
+
+#bottom-link span {
+  color: rgb(0, 140, 255);
 }

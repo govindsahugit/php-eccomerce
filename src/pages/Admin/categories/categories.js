@@ -1,5 +1,6 @@
 import axios from "axios";
 import { insertNavbar } from "../../../components/Navbar";
+import { handleLogout } from "../../../components/Logout";
 
 document.addEventListener("DOMContentLoaded", () => {
   const createForm = document.getElementById("create-form");
@@ -7,8 +8,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const tableBody = document.querySelector("#categories-table tbody");
   const aid = JSON.parse(localStorage.getItem("user")).id;
   let categoryId = "";
+  const mainContainer = document.querySelector(".container");
 
   insertNavbar("navbar", "/logo.png");
+  handleLogout(document.querySelector("#navbar"));
+
+  if (JSON.parse(localStorage.getItem("user")).role !== 2) {
+    mainContainer.innerHTML = `<h1>You are not authorized to view this page</h1>`;
+    return;
+  }
 
   // Fetch and display categories
   async function fetchCategories() {

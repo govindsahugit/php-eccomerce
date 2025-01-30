@@ -1,11 +1,21 @@
 import axios from "axios";
 import { insertNavbar } from "../../../components/Navbar.js";
+import { handleLogout } from "../../../components/Logout.js";
 
 insertNavbar("navbar", "/logo.png");
+handleLogout(document.querySelector("#navbar"));
 
+const currentUser = JSON.parse(localStorage.getItem("user"));
+const mainContainer = document.querySelector(".container");
 const createContainer = document.querySelector("#create-product");
 const updateContainer = document.querySelector("#update-product");
 let productId = "";
+
+// console.log(mainContainer);
+
+if (JSON.parse(localStorage.getItem("user")).role !== 2) {
+  mainContainer.innerHTML = `<h1>You are not authorized to view this page</h1>`;
+}
 
 // Fetch categories
 const fetchCategories = async (selectId) => {
