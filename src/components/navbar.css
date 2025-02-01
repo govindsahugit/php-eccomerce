@@ -9,17 +9,24 @@ html {
   font-family: sans-serif;
   color: #fff;
   background-color: #222;
+  margin-top: 50px;
+}
+
+#app {
+  padding-top: 50px;
 }
 
 #navbar {
   display: flex;
+  width: 100%;
   justify-content: space-around;
   align-items: center;
   padding: 10px 20px;
   background-color: #333;
   color: #fff;
-  position: sticky;
+  position: fixed;
   top: 0;
+  z-index: 1;
 }
 
 .nav-left {

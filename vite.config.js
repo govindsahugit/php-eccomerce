@@ -8,6 +8,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
+      "/api2": {
+        target: "https://api.whatsapp.com/",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api2/, ""),
+      },
     },
   },
 });

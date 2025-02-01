@@ -7,10 +7,10 @@ export function insertNavbar(targetId, imgPath) {
         </div>
         <div class="nav-right">
           <ul class="nav-links">
+          ${
+            localStorage.getItem("user")
+              ? `
             <li><a href="/">HOME</a></li>
-            ${
-              localStorage.getItem("user")
-                ? `
               <li>
               <a href="/src/pages/Admin/dashboard/dashboard.html">ADMIN</a>
             </li>
@@ -18,11 +18,17 @@ export function insertNavbar(targetId, imgPath) {
               <a class="logout-btn" href="#">LOGOUT</a> 
             </li>
                 `
-                : ""
-            }
+              : ""
+          }
           </ul>
         </div>
-        <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+        ${
+          localStorage.getItem("user")
+            ? `
+          <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+          `
+            : "<span>cart</span>"
+        }
     `;
 
   const targetElement = document.getElementById(targetId);

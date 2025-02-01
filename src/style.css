@@ -33,6 +33,7 @@ body {
   align-items: center;
   gap: 40px;
   padding-inline: 20px;
+  z-index: 1;
   /* overflow-x: scroll; */
 }
 
@@ -46,7 +47,8 @@ body {
 #products-container {
   width: 75%;
   height: 100%;
-  padding-top: 100px;
+  padding-top: 50px;
+  padding-left: 40px !important;
   padding-inline: 20px;
   display: flex;
   flex-wrap: wrap;
@@ -60,6 +62,7 @@ body {
   border-radius: 10px;
   overflow: hidden;
   text-align: center;
+  min-height: 400px;
 }
 
 .product h3 {
@@ -73,7 +76,8 @@ body {
   background-size: cover;
 }
 
-.bottom-content {
+.half-price-content,
+.full-price-content {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,16 +85,32 @@ body {
   margin-block: 18px;
 }
 
-.bottom-content button {
+.full-price-content span,
+.half-price-content span {
+  background-color: brown;
+  padding: 3px 4px;
+  border-radius: 6px;
+  margin-right: 4px;
+}
+
+.half-price-content button,
+.full-price-content button {
   padding: 4px 6px;
   border-radius: 12px;
   background-color: rgb(255, 225, 0);
   cursor: pointer;
 }
 
+#cart-container-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  /* z-index: -1; */
+}
+
 #cart-container {
   background-color: #171717;
-  padding-top: 100px;
+  padding-top: 150px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

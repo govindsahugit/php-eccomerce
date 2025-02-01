@@ -59,11 +59,30 @@ const fetchProducts = async () => {
         productCard.classList.add("product-card");
         productCard.innerHTML = `
             <div class="img-card">
-            <img src="/api/uploaded_files/${product.image}" alt="${product.name}">
+            <img src="/api/uploaded_files/${product.image}" alt="${
+          product.name
+        }">
             </div>
             <h3>${product.name}</h3>
-            <p>Rs.${product.price}</p> 
-            <div>
+            ${
+              product.price_type === "single"
+                ? `
+            <div class="full-price-content">
+          <p class="product-price">Rs.${product.full_price}</p>
+          </div>
+            `
+                : `
+                <div class="price-container">
+              <div class="half-price-content">
+          <p class="product-price"><span>Half</span> Rs.${product.half_price}</p>
+          </div>
+          <div class="full-price-content">
+          <p class="product-price"><span>Full</span> Rs.${product.full_price}</p>
+          </div>
+          </div>
+              `
+            }
+            <div class="action-buttons">
             <span class="update-btn" data-id="${product.id}">Update</span>
             <button class="delete-btn" data-id="${product.id}">Delete</button>
             </div>
@@ -91,6 +110,24 @@ createImgInput.addEventListener("change", (e) => {
     document.querySelector("#create-preview-img").src = e.target.result;
   };
   reader.readAsDataURL(file);
+});
+
+// ------------------------------------------------------- //
+
+const priceType = document.querySelector("#price-type");
+const halfPrice = document.querySelector("#half-price");
+const fullPrice = document.querySelector("#full-price");
+
+priceType.addEventListener("change", (e) => {
+  if (e.target.value !== "both") {
+    halfPrice.parentNode.style.display = "none";
+    halfPrice.required = false;
+    fullPrice.previousElementSibling.textContent = "Price";
+  } else {
+    halfPrice.parentNode.style.display = "inline-block";
+    halfPrice.required = true;
+    fullPrice.previousElementSibling.textContent = "Full price";
+  }
 });
 
 // Create Products
@@ -122,9 +159,12 @@ createForm.addEventListener("submit", async (e) => {
 
 // Update Products
 const updateForm = document.getElementById("update-product-form");
+const uptHalfPrice = document.querySelector("#upt-half-price");
+const uptFullPrice = document.querySelector("#upt-full-price");
 
 document.querySelector(".products-list").addEventListener("click", (e) => {
   if (e.target.classList.contains("update-btn")) {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     createContainer.style.display = "none";
     updateContainer.style.display = "block";
     const dataId = e.target.getAttribute("data-id");
@@ -132,8 +172,21 @@ document.querySelector(".products-list").addEventListener("click", (e) => {
     const products = JSON.parse(localStorage.getItem("products"));
     const product = products.find((product) => product.id == dataId);
     updateForm[0].value = product.name;
-    updateForm[1].value = product.price;
-    const options = Array.from(updateForm[2].children);
+    updateForm[1].value = product.price_type;
+    updateForm[2].value = product.half_price;
+    updateForm[3].value = product.full_price;
+
+    if (product.price_type !== "both") {
+      uptHalfPrice.parentNode.style.display = "none";
+      uptHalfPrice.required = false;
+      uptFullPrice.previousElementSibling.textContent = "Price";
+    } else {
+      uptHalfPrice.parentNode.style.display = "inline-block";
+      uptHalfPrice.required = true;
+      uptFullPrice.previousElementSibling.textContent = "Full price";
+    }
+
+    const options = Array.from(updateForm[4].children);
     const categoryName = JSON.parse(localStorage.getItem("products")).find(
       (product) => product.id == dataId
     ).category;
@@ -145,7 +198,7 @@ document.querySelector(".products-list").addEventListener("click", (e) => {
     document.querySelector(
       "#preview-img"
     ).src = `/api/uploaded_files/${product.image}`;
-    updateForm[3].addEventListener("change", (e) => {
+    updateForm[5].addEventListener("change", (e) => {
       const file = e.target.files[0];
       const reader = new FileReader();
       reader.onload = (e) => {

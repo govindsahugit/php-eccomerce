@@ -11,6 +11,10 @@ const ordersContainer = document.querySelector("#orders-container");
 
 const [orderData, setOrderData] = useLocalStorage("orderData", []);
 
+if (JSON.parse(localStorage.getItem("user")).role !== 2) {
+  ordersContainer.innerHTML = `<h1>You are not authorized to view this page</h1>`;
+}
+
 const getOrders = async () => {
   try {
     const { data } = await axios.get(

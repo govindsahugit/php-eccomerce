@@ -13,8 +13,7 @@ handleLogout(navBar);
 const categories = document.getElementById("categories-container");
 const products = document.getElementById("products-container");
 const cartContainer = document.getElementById("cart-container");
-
-// ------------------------------------------------------- //
+let activeCategory = "";
 
 // Fetch all categories
 const fetchCategories = async () => {
@@ -50,18 +49,39 @@ const fetchProducts = async () => {
       `/api/components/routes/products/products.php`
     );
     if (data?.success) {
-      data?.data.forEach((product) => {
+      const filteredData = data?.data.filter((product) =>
+        product.category.includes(activeCategory)
+      );
+      filteredData.forEach((product) => {
         const productElement = document.createElement("div");
         productElement.classList.add("product");
         productElement.innerHTML = `
           <div class="img-div">
-          <img src="/api/uploaded_files/${product.image}" alt="${product.name}" />
+          <img src="/api/uploaded_files/${product.image}" alt="${
+          product.name
+        }" />
           </div>
           <h3 class="product-name">${product.name}</h3>
-          <div class="bottom-content">
-          <p class="product-price">Rs.${product.price}</p>
+          ${
+            product.price_type === "single"
+              ? `
+            <div class="full-price-content">
+          <p class="product-price">Rs.${product.full_price}</p>
           <button class="add-cart">Add</button>
           </div>
+            `
+              : `
+              <div class="half-price-content">
+          <p class="product-price"><span>Half</span> Rs.${product.half_price}</p>
+          <button class="add-cart">Add</button>
+          </div>
+          <div class="full-price-content">
+          <p class="product-price"><span>Full</span> Rs.${product.full_price}</p>
+          <button class="add-cart">Add</button>
+          </div>
+              `
+          }
+          
         `;
         products.appendChild(productElement);
       });
@@ -76,6 +96,21 @@ const fetchProducts = async () => {
 };
 
 fetchProducts();
+
+// -------------------------------------------------- //
+
+categories.addEventListener("click", (e) => {
+  if (e.target.tagName === "SPAN") {
+    // console.log(e.target.textContent);
+    if (e.target.textContent === `All`) {
+      activeCategory = "";
+    } else {
+      activeCategory = e.target.textContent;
+    }
+    products.innerHTML = "";
+    fetchProducts();
+  }
+});
 
 // --------------------------------------------------------- //
 const totalAmountElement = document.querySelector(".total-amount span");
@@ -208,6 +243,7 @@ orderBtn.addEventListener("click", async (e) => {
       orderFormContainer.style.display = "none";
       const clearCart = setCart([]);
       renderCart(clearCart);
+      window.location.href = "https://wa.link/w2lng2";
     }
   } catch {
     (e) => console.log(e);
