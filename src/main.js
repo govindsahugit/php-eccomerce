@@ -157,18 +157,23 @@ products.addEventListener("click", (e) => {
       productElement.querySelector(".product-name").textContent;
     const halfPrice = productElement.children[2].children[0].textContent;
     let fullPrice = halfPrice;
+    let priceType = "single";
     if (productElement.children.length > 3) {
       fullPrice = productElement.children[3].children[0].textContent;
+      priceType = "both";
     }
     let product = {
       id: generateSecureUID(),
       name: productName,
+      price_type: priceType,
     };
     if (e.target.parentNode.classList.contains("full-price-content")) {
       product = { ...product, full_price: fullPrice };
     } else {
       product = { ...product, half_price: halfPrice };
     }
+
+    console.log(product);
 
     // Use the returned updated cart from setCart
     const newCart = setCart((prevData) => [product, ...prevData]);

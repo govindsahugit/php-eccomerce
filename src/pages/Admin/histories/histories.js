@@ -36,8 +36,20 @@ if (JSON.parse(localStorage.getItem("user")).role !== 2) {
                     .products.map(
                       (item) => `
                       <div class="order-item">
-                      <p>Item name: ${item.name}</p>
-                      <p>Item price: Rs.${item.price}</p>
+                      <p>Item name: ${
+                        item.half_price ? "Half" : item.full_price && "Full"
+                      } ${item.name}</p>
+                      <p>Item price: Rs.${
+                        item.half_price
+                          ? item.half_price.substring(
+                              item.half_price.length - 3,
+                              item.half_price.length
+                            )
+                          : item.full_price.substring(
+                              item.full_price.length - 3,
+                              item.full_price.length
+                            )
+                      }</p>
                       </div>
                       `
                     )
