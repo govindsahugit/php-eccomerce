@@ -138,7 +138,7 @@ const renderCart = (cartData) => {
       cartItem.classList.add("cart-product");
       cartItem.innerHTML = `
           <p data-id=${product.id}>${product.name}</p>
-          <p>${product.price}</p>
+          <p>${product.half_price ? product.half_price : product.full_price}</p>
           <button class="remove-cart">Remove</button>
         `;
       cartContainer.appendChild(cartItem);
@@ -155,12 +155,21 @@ products.addEventListener("click", (e) => {
     const productElement = e.target.closest(".product");
     const productName =
       productElement.querySelector(".product-name").textContent;
-    const productPrice = productElement.children[2].children[0].textContent;
-    const product = {
+    const halfPrice = productElement.children[2].children[0].textContent;
+    let fullPrice = halfPrice;
+    if (productElement.children.length > 3) {
+      fullPrice = productElement.children[3].children[0].textContent;
+    }
+    let product = {
       id: generateSecureUID(),
       name: productName,
-      price: productPrice,
     };
+    if (e.target.parentNode.classList.contains("full-price-content")) {
+      product = { ...product, full_price: fullPrice };
+    } else {
+      product = { ...product, half_price: halfPrice };
+    }
+
     // Use the returned updated cart from setCart
     const newCart = setCart((prevData) => [product, ...prevData]);
     cartProducts = newCart;
@@ -191,7 +200,8 @@ const setTotalAmount = (cartData) => {
   totalAmount = 0;
   totalAmountElement.textContent = 0;
   cartData.forEach((product) => {
-    const price = parseInt(product.price.replace("Rs.", ""));
+    let price = product.half_price ? product.half_price : product.full_price;
+    price = parseInt(price.substring(price.length - 3, price.length));
     totalAmount += price;
   });
   totalAmountElement.textContent = totalAmount;
@@ -204,7 +214,6 @@ setTotalAmount(cart);
 
 const proceedBtn = document.querySelector("#confirm-order");
 const orderFormContainer = document.querySelector(".order-form");
-const orderForm = document.querySelector("#order-form form");
 
 const customerName = document.querySelector("#customer-name");
 const customerPhone = document.querySelector("#phone-number");
