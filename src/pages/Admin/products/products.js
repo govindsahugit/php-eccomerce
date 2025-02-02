@@ -11,8 +11,6 @@ const createContainer = document.querySelector("#create-product");
 const updateContainer = document.querySelector("#update-product");
 let productId = "";
 
-// console.log(mainContainer);
-
 if (JSON.parse(localStorage.getItem("user")).role !== 2) {
   mainContainer.innerHTML = `<h1>You are not authorized to view this page</h1>`;
 }
@@ -232,7 +230,6 @@ updateForm.addEventListener("submit", async (e) => {
       }&productid=${productId}`,
       formData
     );
-    console.log(data);
     // Handle the response
     if (data?.success) {
       updateForm.reset();

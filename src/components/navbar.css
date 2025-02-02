@@ -10,6 +10,7 @@ html {
   color: #fff;
   background-color: #222;
   margin-top: 50px;
+  overflow-x: hidden;
 }
 
 #app {
@@ -46,6 +47,10 @@ html {
 .nav-right {
   display: flex;
   align-items: center;
+}
+
+.mobile-only {
+  font-size: 21px;
 }
 
 .nav-links {

@@ -8,6 +8,12 @@ insertNavbar("navbar", "logo.png");
 const navBar = document.querySelector("#navbar");
 handleLogout(navBar);
 
+window.addEventListener("DOMContentLoaded", (e) => {
+  if (JSON.parse(localStorage.getItem("cart")).length) {
+    document.getElementById("place-order-ele").style.display = "inline-block";
+  }
+});
+
 // --------------------------------------------- -- //
 
 const categories = document.getElementById("categories-container");
@@ -21,7 +27,6 @@ const fetchCategories = async () => {
     const { data } = await axios.get(
       `/api/components/routes/categories/categories.php`
     );
-    // console.log(data.data);
     if (data?.success) {
       data?.data.forEach((category) => {
         const categoryElement = document.createElement("span");
@@ -101,7 +106,6 @@ fetchProducts();
 
 categories.addEventListener("click", (e) => {
   if (e.target.tagName === "SPAN") {
-    // console.log(e.target.textContent);
     if (e.target.textContent === `All`) {
       activeCategory = "";
     } else {
@@ -172,14 +176,14 @@ products.addEventListener("click", (e) => {
     } else {
       product = { ...product, half_price: halfPrice };
     }
-
-    console.log(product);
-
     // Use the returned updated cart from setCart
     const newCart = setCart((prevData) => [product, ...prevData]);
     cartProducts = newCart;
     renderCart(newCart); // Render with the latest data
     setTotalAmount(newCart);
+    if (JSON.parse(localStorage.getItem("cart")).length) {
+      document.getElementById("place-order-ele").style.display = "inline-block";
+    }
   }
 });
 
@@ -197,6 +201,9 @@ cartContainer.addEventListener("click", (e) => {
     const newCart = setCart(updatedCart);
     renderCart(newCart); // Render with the latest data
     setTotalAmount(newCart);
+    if (!JSON.parse(localStorage.getItem("cart")).length) {
+      document.getElementById("place-order-ele").style.display = "none";
+    }
   }
 });
 
