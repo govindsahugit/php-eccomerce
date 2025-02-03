@@ -2,17 +2,18 @@ import axios from "axios";
 import { insertNavbar } from "./components/Navbar";
 import { useLocalStorage } from "./hooks/useLocalstorage";
 import { handleLogout } from "./components/Logout";
+import "remixicon/fonts/remixicon.css";
 
 insertNavbar("navbar", "logo.png");
 
 const navBar = document.querySelector("#navbar");
 handleLogout(navBar);
 
-window.addEventListener("DOMContentLoaded", (e) => {
-  if (JSON.parse(localStorage.getItem("cart")).length) {
-    document.getElementById("place-order-ele").style.display = "inline-block";
-  }
-});
+const cartCountEle = document.querySelector(".cart-count");
+
+if (cartCountEle) {
+  cartCountEle.textContent = JSON.parse(localStorage.getItem("cart")).length;
+}
 
 // --------------------------------------------- -- //
 
@@ -106,7 +107,7 @@ fetchProducts();
 
 categories.addEventListener("click", (e) => {
   if (e.target.tagName === "SPAN") {
-    if (e.target.textContent === `All`) {
+    if (e.target.textContent === `सभी`) {
       activeCategory = "";
     } else {
       activeCategory = e.target.textContent;
@@ -128,8 +129,6 @@ function generateSecureUID(length = 20) {
   crypto.getRandomValues(randomValues); // Browser/Node.js crypto API
   return Array.from(randomValues, (val) => chars[val % chars.length]).join("");
 }
-
-// Example output: "k9F3jDpQ7rT2wXyZ1BnL"
 
 const [cart, setCart] = useLocalStorage("cart", []);
 let cartProducts = JSON.parse(localStorage.getItem("cart"));
@@ -181,9 +180,7 @@ products.addEventListener("click", (e) => {
     cartProducts = newCart;
     renderCart(newCart); // Render with the latest data
     setTotalAmount(newCart);
-    if (JSON.parse(localStorage.getItem("cart")).length) {
-      document.getElementById("place-order-ele").style.display = "inline-block";
-    }
+    cartCountEle.textContent = newCart.length;
   }
 });
 
@@ -201,9 +198,7 @@ cartContainer.addEventListener("click", (e) => {
     const newCart = setCart(updatedCart);
     renderCart(newCart); // Render with the latest data
     setTotalAmount(newCart);
-    if (!JSON.parse(localStorage.getItem("cart")).length) {
-      document.getElementById("place-order-ele").style.display = "none";
-    }
+    cartCountEle.textContent = newCart.length;
   }
 });
 

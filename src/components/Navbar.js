@@ -11,7 +11,7 @@ export function insertNavbar(targetId, imgPath) {
         <div class="nav-right">
           <ul class="nav-links">
           ${
-            JSON.parse(localStorage.getItem("user")).role > 0
+            JSON.parse(localStorage.getItem("user"))?.role > 0
               ? `
             <li><a href="/">HOME</a></li>
               <li>
@@ -32,42 +32,40 @@ export function insertNavbar(targetId, imgPath) {
           `
             : `
             <span class="mobile-only" id="cart-toggle">
-  🛒Cart(${JSON.parse(localStorage.getItem("cart")).length})
+  🛒Cart(<span class="cart-count">${
+    JSON.parse(localStorage.getItem("cart")).length
+  }</span>)
 </span>
             `
         }
     `;
 
   const targetElement = document.getElementById(targetId);
-  targetElement.addEventListener("click", function (e) {
+  targetElement?.addEventListener("click", function (e) {
     if (e.target.classList.contains("heading")) {
       window.location.href = "/";
       return;
     }
     if (e.target.classList.contains("mobile-only")) {
       if (e.target.textContent.substring(5, 9) === "Cart") {
-        e.target.innerHTML = "";
         gsap.to("#cart-container-wrapper", {
           transform: "translateX(0%)",
         });
-        gsap.to("#place-order-ele", {
-          transform: "translateX(-10%)",
+        gsap.to(".close-btn", {
+          transform: "translateX(0%)",
         });
-        e.target.innerHTML = `<i class="ri-close-large-fill mobile-only"></i>`;
-        // e.target.style.fontSize = "1.5rem";
-      } else {
-        gsap.to("#cart-container-wrapper", {
-          transform: "translateX(100%)",
-        });
-        gsap.to("#place-order-ele", {
-          transform: "translateX(-100%)",
-        });
-        e.target.parentNode.innerHTML = `<span class="mobile-only" id="cart-toggle">
-  🛒Cart(${JSON.parse(localStorage.getItem("cart")).length})
-</span>`;
-        // e.target.parentNode.style.fontSize = "1rem";
       }
     }
+  });
+
+  const closeBtn = document.querySelector(".close-btn");
+  closeBtn?.addEventListener("click", () => {
+    gsap.to("#cart-container-wrapper", {
+      transform: "translateX(100%)",
+    });
+    gsap.to(".close-btn", {
+      transform: "translateX(100%)",
+    });
   });
 
   if (targetElement) {

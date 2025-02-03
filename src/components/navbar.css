@@ -4,17 +4,44 @@
   box-sizing: border-box;
 }
 
+*::-webkit-scrollbar {
+  width: 0;
+}
+
 body,
 html {
   font-family: sans-serif;
   color: #fff;
-  background-color: #222;
   margin-top: 50px;
   overflow-x: hidden;
 }
 
+#bg-image {
+  height: 100vh;
+  height: 100svh;
+  width: 100vw;
+  background-image: url(/public/Leonardo_Phoenix_10_A_vibrant_and_appetizing_composition_featu_3.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  position: fixed;
+  top: 0;
+  z-index: -3;
+}
+
+#img-cover {
+  height: 100vh;
+  height: 100svh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  backdrop-filter: blur(5px);
+  z-index: -2;
+}
+
 #app {
-  padding-top: 50px;
+  padding-top: 20px;
 }
 
 #navbar {
@@ -23,7 +50,8 @@ html {
   justify-content: space-around;
   align-items: center;
   padding: 10px 20px;
-  background-color: #333;
+  background-color: #635f5f53;
+  backdrop-filter: blur(10px);
   color: #fff;
   position: fixed;
   top: 0;
@@ -116,5 +144,15 @@ html {
 
   #navbar {
     justify-content: space-between;
+  }
+}
+
+@media (min-width: 1000px) {
+  #bg-image {
+    background-image: url(/public/Leonardo_Phoenix_10_Vibrant_and_appetizing_Indian_food_backgro_0.jpg);
+  }
+
+  #img-cover {
+    backdrop-filter: blur(8px);
   }
 }

@@ -9,47 +9,51 @@
     <title>Vite App</title>
   </head>
   <body>
-    <button class="mobile-only" id="cart-toggle">🛒 View Cart</button>
+    <div id="bg-image"></div>
+    <div id="img-cover"></div>
     <div id="app">
       <nav id="navbar"></nav>
       <header>
         <div id="categories-container">
-          <span>All</span>
+          <span>सभी</span>
         </div>
       </header>
       <main id="main">
         <div id="products-container"></div>
+        <div id="place-order-ele">
+          <div class="total-amount">Total Rs.<span>0</span></div>
+          <button id="confirm-order">आर्डर करे</button>
+        </div>
+        <div class="close-btn">
+          <i class="ri-close-large-line mobile-only"></i>
+        </div>
         <div id="cart-container-wrapper">
           <div id="cart-container"></div>
-          <div id="place-order-ele">
-            <div class="total-amount">Total Rs.<span>0</span></div>
-            <button id="confirm-order">आर्डर करे</button>
-          </div>
         </div>
       </main>
     </div>
     <div class="order-form">
       <form class="order-submit-form">
         <div class="order-form-group">
-          <label for="customer-name">Name</label><br />
+          <label for="customer-name">नाम</label><br />
           <input
             type="text"
             id="customer-name"
-            placeholder="Enter your name"
+            placeholder="Apna nam likhe"
             name="name"
             required />
         </div>
         <div class="order-form-group">
-          <label for="phone-number">Phone</label> <br />
+          <label for="phone-number">फ़ोन नं</label> <br />
           <input
             type="text"
             id="phone-number"
-            placeholder="Enter your phone number"
+            placeholder="Apna phone number likhe"
             name="phone"
             required />
         </div>
         <div class="order-form-group">
-          <label for="order-address">Address</label> <br />
+          <label for="order-address">पता</label> <br />
           <textarea
             id="order-address"
             placeholder="e.g chakarbhata ward no.12 near ganesh mandir"

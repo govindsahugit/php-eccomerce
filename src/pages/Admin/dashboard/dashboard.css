@@ -1,9 +1,6 @@
 /* Base Reset */
 body {
-  margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #222;
-  color: #fff;
 }
 
 .dashboard h1 {
@@ -38,7 +35,8 @@ body {
 
 .main-content {
   padding: clamp(20px, 5vw, 25px);
-  background-color: #1f1e1e;
+  background-color: #1f1e1e46;
+  backdrop-filter: blur(10px);
   display: inline-block;
   margin: 40px;
   border-radius: 10px;

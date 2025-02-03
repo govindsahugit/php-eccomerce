@@ -1,5 +1,6 @@
 #users-container {
   margin: 50px;
+  backdrop-filter: blur(15px);
 }
 
 #main-admin {
@@ -60,4 +61,37 @@ tbody td {
 
 .actions button:hover {
   opacity: 0.8;
+}
+
+@media (max-width: 1000px) {
+  #users-container {
+    margin: unset;
+  }
+  table {
+    margin-top: unset;
+  }
+  thead th {
+    padding: 5px;
+  }
+  tbody td {
+    padding: 8px;
+  }
+  .actions button {
+    padding: 2px 5px;
+    margin: 0 2px;
+    font-size: 0.8rem;
+    border-radius: 2px;
+  }
+  #admin {
+    padding: 2px 3px;
+    border-radius: 2px;
+    font-size: 15px;
+  }
+  #main-admin {
+    padding: 2px 3px;
+    border-radius: 2px;
+  }
+  td {
+    font-size: 14px;
+  }
 }
