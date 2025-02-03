@@ -1,9 +1,12 @@
 import axios from "axios";
-import { insertNavbar } from "../../../components/Navbar.js";
+import { inserSideBar, insertNavbar } from "../../../components/Navbar.js";
 import { handleLogout } from "../../../components/Logout.js";
+import { handleSideBar } from "../../../components/HandleSideBar.js";
 
 insertNavbar("navbar", "/logo.png");
-handleLogout(document.querySelector("#navbar"))
+handleLogout(document.querySelector("#navbar"));
+inserSideBar("side-bar");
+handleSideBar("navbar", "side-close-btn");
 
 const currentUser = JSON.parse(localStorage.getItem("user"));
 const usersContainer = document.querySelector("#users-container");

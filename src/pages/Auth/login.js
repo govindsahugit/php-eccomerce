@@ -1,8 +1,11 @@
 import { handleLogout } from "../../components/Logout";
-import { insertNavbar } from "../../components/Navbar";
+import { inserSideBar, insertNavbar } from "../../components/Navbar";
+import { handleSideBar } from "../../components/HandleSideBar";
 
 insertNavbar("navbar", "/logo.png");
-handleLogout(document.querySelector("#navbar"))
+handleLogout(document.querySelector("#navbar"));
+inserSideBar("side-bar");
+handleSideBar("navbar", "side-close-btn");
 
 const loginForm = document.getElementById("login-form");
 

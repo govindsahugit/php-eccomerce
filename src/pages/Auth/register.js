@@ -1,10 +1,13 @@
+import { handleSideBar } from "../../components/HandleSideBar";
 import { handleLogout } from "../../components/Logout";
-import { insertNavbar } from "../../components/Navbar";
+import { inserSideBar, insertNavbar } from "../../components/Navbar";
 
 const registerForm = document.getElementById("registerForm");
 
 insertNavbar("navbar", "/logo.png");
 handleLogout(document.querySelector("#navbar"));
+inserSideBar("side-bar");
+handleSideBar("navbar", "side-close-btn");
 
 registerForm.addEventListener("submit", async function (event) {
   event.preventDefault();

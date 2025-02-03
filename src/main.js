@@ -1,10 +1,13 @@
 import axios from "axios";
-import { insertNavbar } from "./components/Navbar";
+import { inserSideBar, insertNavbar } from "./components/Navbar";
 import { useLocalStorage } from "./hooks/useLocalstorage";
 import { handleLogout } from "./components/Logout";
 import "remixicon/fonts/remixicon.css";
+import { handleSideBar } from "./components/HandleSideBar";
 
 insertNavbar("navbar", "logo.png");
+inserSideBar("side-bar");
+handleSideBar("navbar", "side-close-btn");
 
 const navBar = document.querySelector("#navbar");
 handleLogout(navBar);

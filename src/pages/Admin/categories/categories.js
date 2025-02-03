@@ -1,6 +1,7 @@
 import axios from "axios";
-import { insertNavbar } from "../../../components/Navbar";
+import { inserSideBar, insertNavbar } from "../../../components/Navbar";
 import { handleLogout } from "../../../components/Logout";
+import { handleSideBar } from "../../../components/HandleSideBar";
 
 document.addEventListener("DOMContentLoaded", () => {
   const createForm = document.getElementById("create-form");
@@ -12,6 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   insertNavbar("navbar", "/logo.png");
   handleLogout(document.querySelector("#navbar"));
+  inserSideBar("side-bar");
+  handleSideBar("navbar", "side-close-btn");
 
   if (JSON.parse(localStorage.getItem("user")).role !== 2) {
     mainContainer.innerHTML = `<h1>You are not authorized to view this page</h1>`;

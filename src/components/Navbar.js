@@ -74,3 +74,26 @@ export function insertNavbar(targetId, imgPath) {
     console.error(`Element with id "${targetId}" not found.`);
   }
 }
+
+export function inserSideBar(targetId) {
+  const sideBarHTML = `
+  <div id="side-close-btn">
+        <i class="ri-close-large-line"></i>
+      </div>
+      <div class="side-links">
+        <a href="/">HOME</a>
+        <a href="#">CART(<span class="cart-count">${
+          JSON.parse(localStorage.getItem("cart")).length
+        }</span>)</a>
+        <a href="/src/pages/Admin/dashboard/dashboard.html">ADMIN</a>
+        <a href="#" class="logout-btn">LOGOUT</a>
+      </div>
+  `;
+
+  const targetElement = document.getElementById(targetId);
+  if (targetElement) {
+    targetElement.innerHTML = sideBarHTML;
+  } else {
+    console.error(`Element with id "${targetId}" not found.`);
+  }
+}

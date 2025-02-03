@@ -1,8 +1,11 @@
+import { handleSideBar } from "../../../components/HandleSideBar";
 import { handleLogout } from "../../../components/Logout";
-import { insertNavbar } from "../../../components/Navbar";
+import { inserSideBar, insertNavbar } from "../../../components/Navbar";
 
 insertNavbar("navbar", "/logo.png");
 handleLogout(document.querySelector("#navbar"));
+inserSideBar("side-bar");
+handleSideBar("navbar", "side-close-btn");
 
 if (!JSON.parse(localStorage.getItem("user"))) {
   document.querySelector(".main-content").innerHTML =

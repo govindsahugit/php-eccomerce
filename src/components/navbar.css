@@ -44,6 +44,45 @@ html {
   padding-top: 20px;
 }
 
+#side-bar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 70%;
+  background-color: rgba(24, 24, 24, 0.34);
+  backdrop-filter: blur(15px);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  z-index: 6;
+}
+
+#side-close-btn {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+
+#side-close-btn i {
+  font-size: 25px;
+}
+
+.side-links {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.side-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 22px;
+}
+
 #navbar {
   display: flex;
   width: 100%;
