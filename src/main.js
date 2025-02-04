@@ -262,7 +262,7 @@ orderBtn.addEventListener("click", async (e) => {
       orderFormContainer.style.display = "none";
       const clearCart = setCart([]);
       renderCart(clearCart);
-      window.location.href = "https://wa.link/w2lng2";
+      window.location.href = "https://wa.link/7dnmxx";
     }
   } catch {
     (e) => console.log(e);
