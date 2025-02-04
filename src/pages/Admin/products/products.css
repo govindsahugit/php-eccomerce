@@ -23,6 +23,10 @@
 
 /* Products List */
 .products-list {
+  width: 100%;
+  height: fit-content;
+  padding: 20px;
+  padding-bottom: 100px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
   gap: 10px;
@@ -32,30 +36,19 @@
 .product-card {
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 20px;
+  padding: 5px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: fit-content;
   background-color: #2020204d;
   backdrop-filter: blur(8px);
-}
-
-/* .product-card div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 10px;
-} */
-
-.img-card {
-  width: 300px;
+  overflow: hidden;
 }
 
 .product-card img {
   width: 100%;
-  height: auto;
-  border-radius: 8px;
+  background-position: center;
+  background-size: cover;
 }
 
 .product-card h3 {

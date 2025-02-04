@@ -20,7 +20,7 @@ html {
   height: 100vh;
   height: 100svh;
   width: 100vw;
-  background-image: url(/public/Leonardo_Phoenix_10_A_vibrant_and_appetizing_composition_featu_3.jpg);
+  background-image: url(/Leonardo_Phoenix_10_A_vibrant_and_appetizing_composition_featu_3.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -188,7 +188,7 @@ html {
 
 @media (min-width: 1000px) {
   #bg-image {
-    background-image: url(/public/Leonardo_Phoenix_10_Vibrant_and_appetizing_Indian_food_backgro_0.jpg);
+    background-image: url(/Leonardo_Phoenix_10_Vibrant_and_appetizing_Indian_food_backgro_0.jpg);
   }
 
   #img-cover {

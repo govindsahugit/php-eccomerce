@@ -82,11 +82,11 @@ export function inserSideBar(targetId) {
       </div>
       <div class="side-links">
         <a href="/">HOME</a>
-        <a href="#">CART(<span class="cart-count">${
+        <a class="side-cart">CART(<span class="cart-count">${
           JSON.parse(localStorage.getItem("cart")).length
         }</span>)</a>
         <a href="/src/pages/Admin/dashboard/dashboard.html">ADMIN</a>
-        <a href="#" class="logout-btn">LOGOUT</a>
+        <a class="logout-btn">LOGOUT</a>
       </div>
   `;
 
@@ -96,4 +96,21 @@ export function inserSideBar(targetId) {
   } else {
     console.error(`Element with id "${targetId}" not found.`);
   }
+  targetElement.addEventListener("click", (e) => {
+    if (e.target.classList.contains("side-cart")) {
+      gsap.to("#side-bar", {
+        transform: "translateX(100%)",
+      });
+      gsap.to("#cart-container-wrapper", {
+        transform: "translateX(0%)",
+      });
+      gsap.to(".close-btn", {
+        transform: "translateX(0%)",
+      });
+    }
+    if (e.target.classList.contains("logout-btn")) {
+      localStorage.removeItem("user");
+      window.location.href = "/src/pages/Auth/login.html";
+    }
+  });
 }

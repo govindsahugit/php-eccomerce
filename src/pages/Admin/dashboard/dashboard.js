@@ -1,4 +1,7 @@
-import { handleSideBar } from "../../../components/HandleSideBar";
+import {
+  handleSideBar,
+  inserSideCart,
+} from "../../../components/HandleSideBar";
 import { handleLogout } from "../../../components/Logout";
 import { inserSideBar, insertNavbar } from "../../../components/Navbar";
 

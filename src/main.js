@@ -271,8 +271,31 @@ orderBtn.addEventListener("click", async (e) => {
 
 // ----------------------------------------------- //
 
+if (localStorage.getItem("customerName")) {
+  customerName.value = localStorage.getItem("customerName");
+}
+if (localStorage.getItem("customerPhone")) {
+  customerPhone.value = localStorage.getItem("customerPhone");
+}
+if (localStorage.getItem("customerAddress")) {
+  customerAddress.value = localStorage.getItem("customerAddress");
+}
+
 customerName.addEventListener("change", (e) => {
   if (e.target.value === "authpage") {
     window.location.href = "/src/pages/Auth/login.html";
   }
+  localStorage.setItem("customerName", e.target.value);
+});
+customerPhone.addEventListener("change", (e) => {
+  if (e.target.value === "authpage") {
+    window.location.href = "/src/pages/Auth/login.html";
+  }
+  localStorage.setItem("customerPhone", e.target.value);
+});
+customerAddress.addEventListener("change", (e) => {
+  if (e.target.value === "authpage") {
+    window.location.href = "/src/pages/Auth/login.html";
+  }
+  localStorage.setItem("customerAddress", e.target.value);
 });
