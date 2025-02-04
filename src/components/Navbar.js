@@ -80,9 +80,7 @@ export function inserSideBar(targetId) {
       </div>
       <div class="side-links">
         <a href="/">HOME</a>
-        <a class="side-cart">CART(<span class="cart-count">${
-          JSON.parse(localStorage.getItem("cart")).length
-        }</span>)</a>
+        <a class="side-cart">CART(<span class="cart-count">0</span>)</a>
         <a href="/src/pages/Admin/dashboard/dashboard.html">ADMIN</a>
         <a class="logout-btn">LOGOUT</a>
       </div>
