@@ -18,4 +18,4 @@ const nameSpan = document.querySelector(".main-content #name");
 
 const userData = JSON.parse(localStorage.getItem("user"));
 
-nameSpan.innerHTML = userData.name;
+nameSpan.innerHTML = userData?.name;

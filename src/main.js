@@ -15,7 +15,7 @@ handleLogout(navBar);
 const cartCountEle = document.querySelector(".cart-count");
 
 if (cartCountEle) {
-  cartCountEle.textContent = JSON.parse(localStorage.getItem("cart")).length;
+  cartCountEle.textContent = JSON.parse(localStorage.getItem("cart"))?.length;
 }
 
 // --------------------------------------------- -- //
@@ -134,7 +134,10 @@ function generateSecureUID(length = 20) {
 }
 
 const [cart, setCart] = useLocalStorage("cart", []);
-let cartProducts = JSON.parse(localStorage.getItem("cart"));
+let cartProducts = [];
+if (JSON.parse(localStorage.getItem("cart"))) {
+  cartProducts = JSON.parse(localStorage.getItem("cart"));
+}
 
 const renderCart = (cartData) => {
   cartContainer.innerHTML = "";
@@ -192,7 +195,7 @@ cartContainer.addEventListener("click", (e) => {
     const productElement = e.target.closest(".cart-product");
     const productId = productElement.children[0].getAttribute("data-id");
     const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
-    const updatedCart = currentCart.filter(
+    const updatedCart = currentCart?.filter(
       (product) => product.id !== productId
     );
     cartProducts = updatedCart;

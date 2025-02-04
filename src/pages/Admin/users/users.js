@@ -13,13 +13,13 @@ const usersContainer = document.querySelector("#users-container");
 const tbody = document.getElementsByTagName("tbody");
 
 const fetchUsers = async () => {
-  if (currentUser.role !== 2) {
+  if (currentUser?.role !== 2) {
     usersContainer.innerHTML = `<h1>You are not authorized to view this page</h1>`;
     return;
   }
   try {
     const { data } = await axios.get("/api/components/routes/users/users.php", {
-      aid: currentUser.id,
+      aid: currentUser?.id,
     });
     if (data.success) {
       tbody[0].innerHTML = "";
@@ -61,7 +61,7 @@ tbody[0].addEventListener("click", async (e) => {
   if (e.target.classList.contains("update")) {
     const id = e.target.getAttribute("dataid");
     const requestData = {
-      aid: currentUser.id,
+      aid: currentUser?.id,
       role: 1,
     };
     try {

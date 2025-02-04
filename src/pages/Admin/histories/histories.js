@@ -8,10 +8,10 @@ handleLogout(document.querySelector("#navbar"));
 inserSideBar("side-bar");
 handleSideBar("navbar", "side-close-btn");
 
-const aid = JSON.parse(localStorage.getItem("user")).id;
+const aid = JSON.parse(localStorage.getItem("user"))?.id;
 const historiesContainer = document.querySelector("#histories-container");
 
-if (JSON.parse(localStorage.getItem("user")).role !== 2) {
+if (JSON.parse(localStorage.getItem("user"))?.role !== 2) {
   historiesContainer.innerHTML = `<h1>You are not authorized to view this page</h1>`;
 } else {
   const getHistories = async () => {

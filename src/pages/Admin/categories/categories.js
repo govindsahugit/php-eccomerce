@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const createForm = document.getElementById("create-form");
   const updateForm = document.getElementById("update-form");
   const tableBody = document.querySelector("#categories-table tbody");
-  const aid = JSON.parse(localStorage.getItem("user")).id;
+  const aid = JSON.parse(localStorage.getItem("user"))?.id;
   let categoryId = "";
   const mainContainer = document.querySelector(".container");
 
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   inserSideBar("side-bar");
   handleSideBar("navbar", "side-close-btn");
 
-  if (JSON.parse(localStorage.getItem("user")).role !== 2) {
+  if (JSON.parse(localStorage.getItem("user"))?.role !== 2) {
     mainContainer.innerHTML = `<h1>You are not authorized to view this page</h1>`;
     return;
   }

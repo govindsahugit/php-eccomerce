@@ -8,13 +8,12 @@ handleLogout(document.querySelector("#navbar"));
 inserSideBar("side-bar");
 handleSideBar("navbar", "side-close-btn");
 
-const currentUser = JSON.parse(localStorage.getItem("user"));
 const mainContainer = document.querySelector(".container");
 const createContainer = document.querySelector("#create-product");
 const updateContainer = document.querySelector("#update-product");
 let productId = "";
 
-if (JSON.parse(localStorage.getItem("user")).role !== 2) {
+if (JSON.parse(localStorage.getItem("user"))?.role !== 2) {
   mainContainer.innerHTML = `<h1>You are not authorized to view this page</h1>`;
 }
 
@@ -141,7 +140,7 @@ createForm.addEventListener("submit", async (e) => {
     // Send POST request
     const { data } = await axios.post(
       `/api/components/routes/products/create.php?aid=${
-        JSON.parse(localStorage.getItem("user")).id
+        JSON.parse(localStorage.getItem("user"))?.id
       }`,
       formData
     );
@@ -171,11 +170,11 @@ document.querySelector(".products-list").addEventListener("click", (e) => {
     const dataId = e.target.getAttribute("data-id");
     productId = dataId;
     const products = JSON.parse(localStorage.getItem("products"));
-    const product = products.find((product) => product.id == dataId);
-    updateForm[0].value = product.name;
-    updateForm[1].value = product.price_type;
-    updateForm[2].value = product.half_price;
-    updateForm[3].value = product.full_price;
+    const product = products?.find((product) => product.id == dataId);
+    updateForm[0].value = product?.name;
+    updateForm[1].value = product?.price_type;
+    updateForm[2].value = product?.half_price;
+    updateForm[3].value = product?.full_price;
 
     if (product.price_type !== "both") {
       uptHalfPrice.parentNode.style.display = "none";
@@ -188,7 +187,7 @@ document.querySelector(".products-list").addEventListener("click", (e) => {
     }
 
     const options = Array.from(updateForm[4].children);
-    const categoryName = JSON.parse(localStorage.getItem("products")).find(
+    const categoryName = JSON.parse(localStorage.getItem("products"))?.find(
       (product) => product.id == dataId
     ).category;
     options.forEach((option) => {
@@ -229,7 +228,7 @@ updateForm.addEventListener("submit", async (e) => {
     // Send POST request
     const { data } = await axios.post(
       `/api/components/routes/products/update.php?aid=${
-        JSON.parse(localStorage.getItem("user")).id
+        JSON.parse(localStorage.getItem("user"))?.id
       }&productid=${productId}`,
       formData
     );
@@ -260,7 +259,7 @@ document
         // Send DELETE request
         const { data } = await axios.delete(
           `/api/components/routes/products/delete.php?aid=${
-            JSON.parse(localStorage.getItem("user")).id
+            JSON.parse(localStorage.getItem("user"))?.id
           }&productid=${dataId}`
         );
         // Handle the response
