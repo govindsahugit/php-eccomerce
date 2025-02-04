@@ -1,9 +1,6 @@
-import {
-  handleSideBar,
-  inserSideCart,
-} from "../../../components/HandleSideBar";
-import { handleLogout } from "../../../components/Logout";
-import { inserSideBar, insertNavbar } from "../../../components/Navbar";
+import { handleSideBar } from "../../../components/HandleSideBar.js";
+import { handleLogout } from "../../../components/Logout.js";
+import { inserSideBar, insertNavbar } from "../../../components/Navbar.js";
 
 insertNavbar("navbar", "/logo.png");
 handleLogout(document.querySelector("#navbar"));

@@ -1,7 +1,7 @@
 import axios from "axios";
-import { inserSideBar, insertNavbar } from "../../../components/Navbar";
-import { handleLogout } from "../../../components/Logout";
-import { handleSideBar } from "../../../components/HandleSideBar";
+import { inserSideBar, insertNavbar } from "../../../components/Navbar.js";
+import { handleLogout } from "../../../components/Logout.js";
+import { handleSideBar } from "../../../components/HandleSideBar.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const createForm = document.getElementById("create-form");

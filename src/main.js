@@ -1,9 +1,9 @@
 import axios from "axios";
-import { inserSideBar, insertNavbar } from "./components/Navbar";
-import { useLocalStorage } from "./hooks/useLocalstorage";
-import { handleLogout } from "./components/Logout";
+import { inserSideBar, insertNavbar } from "./components/Navbar.js";
+import { useLocalStorage } from "./hooks/useLocalStorage.js";
+import { handleLogout } from "./components/Logout.js";
 import "remixicon/fonts/remixicon.css";
-import { handleSideBar } from "./components/HandleSideBar";
+import { handleSideBar } from "./components/HandleSideBar.js";
 
 insertNavbar("navbar", "logo.png");
 inserSideBar("side-bar");

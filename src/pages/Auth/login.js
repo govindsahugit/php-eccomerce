@@ -1,6 +1,6 @@
-import { handleLogout } from "../../components/Logout";
-import { inserSideBar, insertNavbar } from "../../components/Navbar";
-import { handleSideBar } from "../../components/HandleSideBar";
+import { handleLogout } from "../../components/Logout.js";
+import { inserSideBar, insertNavbar } from "../../components/Navbar.js";
+import { handleSideBar } from "../../components/HandleSideBar.js";
 
 insertNavbar("navbar", "/logo.png");
 handleLogout(document.querySelector("#navbar"));
