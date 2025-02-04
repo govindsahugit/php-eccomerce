@@ -32,9 +32,7 @@ export function insertNavbar(targetId, imgPath) {
           `
             : `
             <span class="mobile-only" id="cart-toggle">
-  🛒Cart(<span class="cart-count">${
-    JSON.parse(localStorage.getItem("cart")).length
-  }</span>)
+  🛒Cart(<span class="cart-count">0</span>)
 </span>
             `
         }
