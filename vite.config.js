@@ -10,4 +10,12 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        main: "./index.html",
+        login: "./login.html",
+      },
+    },
+  },
 });
