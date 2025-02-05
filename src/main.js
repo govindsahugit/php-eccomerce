@@ -29,7 +29,7 @@ if (window.screenY === 0) {
   // Scroll down 1px to hide the address bar on mobile
   window.addEventListener("load", () => {
     setTimeout(() => {
-      window.scrollTo(0, 1);
+      window.scrollTo(0, 15);
     }, 0);
   });
 }
