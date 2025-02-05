@@ -31,7 +31,7 @@ export function RegisterPageJs() {
 
 export function RegisterPage() {
   return `
-  <main>
+  <main id="user-auth">
       <div class="auth-container">
         <h1>User Registration</h1>
         <form id="registerForm">

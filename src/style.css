@@ -853,6 +853,10 @@ tbody td {
 /* ------------ auth styling ---------------- */
 
 .auth-container {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translateX(-50%);
   background-color: #2826265e;
   backdrop-filter: blur(15px);
   color: #fff;

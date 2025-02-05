@@ -37,7 +37,7 @@ export function LoginPageJs() {
 
 export function LoginPage() {
   return `
-  <main>
+  <main id="user-auth">
       <div class="auth-container">
         <h1>User Login</h1>
         <form id="login-form">
