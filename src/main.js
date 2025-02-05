@@ -29,7 +29,7 @@ let activeCategory = "";
 const fetchCategories = async () => {
   try {
     const { data } = await axios.get(
-      `/api/components/routes/categories/categories.php`
+      `https://api.appfortest.freewebhostmost.com/components/routes/categories/categories.php`
     );
     if (data?.success) {
       data?.data.forEach((category) => {
@@ -55,7 +55,7 @@ fetchCategories();
 const fetchProducts = async () => {
   try {
     const { data } = await axios.get(
-      `/api/components/routes/products/products.php`
+      `https://api.appfortest.freewebhostmost.com/components/routes/products/products.php`
     );
     if (data?.success) {
       const filteredData = data?.data.filter((product) =>
@@ -66,9 +66,9 @@ const fetchProducts = async () => {
         productElement.classList.add("product");
         productElement.innerHTML = `
           <div class="img-div">
-          <img src="/api/uploaded_files/${product.image}" alt="${
-          product.name
-        }" />
+          <img src="https://api.appfortest.freewebhostmost.com/uploaded_files/${
+            product.image
+          }" alt="${product.name}" />
           </div>
           <h3 class="product-name">${product.name}</h3>
           ${
@@ -258,7 +258,7 @@ orderBtn.addEventListener("click", async (e) => {
 
   try {
     const { data } = await axios.post(
-      "/api/components/routes/orders/create.php",
+      "https://api.appfortest.freewebhostmost.com/components/routes/orders/create.php",
       orderData
     );
     if (data.success) {
