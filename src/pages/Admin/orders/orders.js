@@ -1,35 +1,30 @@
 import axios from "axios";
-import { inserSideBar, insertNavbar } from "../../../components/Navbar.js";
-import { handleLogout } from "../../../components/Logout.js";
-import { useLocalStorage } from "../../../hooks/useLocalStorage.js";
-import { handleSideBar } from "../../../components/HandleSideBar.js";
+import { useLocalStorage } from "../../../hooks/useLocalStorage";
 
-insertNavbar("navbar", "/logo.png");
-handleLogout(document.querySelector("#navbar"));
-inserSideBar("side-bar");
-handleSideBar("navbar", "side-close-btn");
+export function OrderPageJs() {
+  const aid = JSON.parse(localStorage.getItem("user"))?.id;
+  const ordersContainer = document.querySelector("#orders-container");
 
-const aid = JSON.parse(localStorage.getItem("user"))?.id;
-const ordersContainer = document.querySelector("#orders-container");
+  const [orderData, setOrderData] = useLocalStorage("orderData", []);
 
-const [orderData, setOrderData] = useLocalStorage("orderData", []);
+  if (JSON.parse(localStorage.getItem("user"))?.role < 2) {
+    ordersContainer.innerHTML = `<h1>You are not authorized to view this page</h1>`;
+  }
 
-if (JSON.parse(localStorage.getItem("user"))?.role !== 2) {
-  ordersContainer.innerHTML = `<h1>You are not authorized to view this page</h1>`;
-}
-
-const getOrders = async () => {
-  try {
-    const { data } = await axios.get(
-      `/api/components/routes/orders/orders.php?aid=${aid}`
-    );
-    if (data.success) {
-      ordersContainer.innerHTML = "";
-      setOrderData(data.data);
-      data.data.forEach((order) => {
-        const orderCard = document.createElement("div");
-        orderCard.classList.add("order-card");
-        orderCard.innerHTML = `
+  const getOrders = async () => {
+    try {
+      const { data } = await axios.get(
+        `${
+          import.meta.env.VITE_API_URI
+        }/components/routes/orders/orders.php?aid=${aid}`
+      );
+      if (data.success) {
+        ordersContainer.innerHTML = "";
+        setOrderData(data.data);
+        data.data.forEach((order) => {
+          const orderCard = document.createElement("div");
+          orderCard.classList.add("order-card");
+          orderCard.innerHTML = `
         <h2>Customer details</h2> <br>
           <div class="order-card-body">
             <p>Customer name: ${order.buyer}</p>
@@ -66,46 +61,57 @@ const getOrders = async () => {
               <button data-id=${order.id}>Done</button>
               </div>
         `;
-        ordersContainer.appendChild(orderCard);
-      });
-    } else {
-      ordersContainer.innerHTML = `
+          ordersContainer.appendChild(orderCard);
+        });
+      } else {
+        ordersContainer.innerHTML = `
       <div class="no-orders">
       <h2>No orders yet</h2>
       </div>
       `;
-    }
-  } catch {
-    (e) => console.log(e);
-  }
-};
-
-getOrders();
-
-// send orderhistory
-ordersContainer.addEventListener("click", async (e) => {
-  if (e.target.tagName === "BUTTON") {
-    const history = orderData;
-    const requestData = { aid, history };
-    const dataId = e.target.getAttribute("data-id");
-    try {
-      const { data } = await axios.post(
-        "/api/components/routes/order-histories/create.php",
-        requestData
-      );
-      if (data.success) {
-        const deleteResponse = await axios.delete(
-          `/api/components/routes/orders/delete.php?orderid=${dataId}&aid=${aid}`
-        );
-        if (deleteResponse.data.success) {
-          // window.location.reload();
-          getOrders();
-        } else {
-          console.log("Something went wrong while deleting the order.");
-        }
       }
     } catch {
       (e) => console.log(e);
     }
-  }
-});
+  };
+
+  getOrders();
+
+  // send orderhistory
+  ordersContainer.addEventListener("click", async (e) => {
+    if (e.target.tagName === "BUTTON") {
+      const history = orderData;
+      const requestData = { aid, history };
+      const dataId = e.target.getAttribute("data-id");
+      try {
+        const { data } = await axios.post(
+          `${
+            import.meta.env.VITE_API_URI
+          }/components/routes/order-histories/create.php`,
+          requestData
+        );
+        if (data.success) {
+          const deleteResponse = await axios.delete(
+            `${
+              import.meta.env.VITE_API_URI
+            }/components/routes/orders/delete.php?orderid=${dataId}&aid=${aid}`
+          );
+          if (deleteResponse.data.success) {
+            // window.location.reload();
+            getOrders();
+          } else {
+            console.log("Something went wrong while deleting the order.");
+          }
+        }
+      } catch {
+        (e) => console.log(e);
+      }
+    }
+  });
+}
+
+export function orderPage() {
+  return `
+  <div id="orders-container"></div>
+  `;
+}

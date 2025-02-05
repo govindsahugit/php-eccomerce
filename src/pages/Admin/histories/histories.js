@@ -1,30 +1,25 @@
 import axios from "axios";
-import { inserSideBar, insertNavbar } from "../../../components/Navbar.js";
-import { handleLogout } from "../../../components/Logout.js";
-import { handleSideBar } from "../../../components/HandleSideBar.js";
 
-insertNavbar("navbar", "/logo.png");
-handleLogout(document.querySelector("#navbar"));
-inserSideBar("side-bar");
-handleSideBar("navbar", "side-close-btn");
+export function HistoriesPageJs() {
+  const aid = JSON.parse(localStorage.getItem("user"))?.id;
+  const historiesContainer = document.querySelector("#histories-container");
 
-const aid = JSON.parse(localStorage.getItem("user"))?.id;
-const historiesContainer = document.querySelector("#histories-container");
-
-if (JSON.parse(localStorage.getItem("user"))?.role !== 2) {
-  historiesContainer.innerHTML = `<h1>You are not authorized to view this page</h1>`;
-} else {
-  const getHistories = async () => {
-    try {
-      const response = await axios.get(
-        `/api/components/routes/order-histories/histories.php?aid=${aid}`
-      );
-      const histories = response.data.data;
-      historiesContainer.innerHTML = "";
-      histories.forEach((history) => {
-        const orderCard = document.createElement("div");
-        orderCard.classList.add("order-card");
-        orderCard.innerHTML = `
+  if (JSON.parse(localStorage.getItem("user"))?.role < 2) {
+    historiesContainer.innerHTML = `<h1>You are not authorized to view this page</h1>`;
+  } else {
+    const getHistories = async () => {
+      try {
+        const response = await axios.get(
+          `${
+            import.meta.env.VITE_API_URI
+          }/components/routes/order-histories/histories.php?aid=${aid}`
+        );
+        const histories = response.data.data;
+        historiesContainer.innerHTML = "";
+        histories.forEach((history) => {
+          const orderCard = document.createElement("div");
+          orderCard.classList.add("order-card");
+          orderCard.innerHTML = `
               <h2>Customer details</h2> <br>
                 <div class="order-card-body">
                   <p>Customer name: ${JSON.parse(history.history)[0].buyer}</p>
@@ -58,34 +53,41 @@ if (JSON.parse(localStorage.getItem("user"))?.role !== 2) {
                     )
                     .join("")}
                     </div> <br>
-                    <div class="bottom-content"
+                    <div class="bottom-content-h"
                     <h3>Total: Rs.${JSON.parse(history.history)[0].total}</h3>
                     <button data-id=${history.id}>Delete</button>
                     </div>
               `;
-        historiesContainer.appendChild(orderCard);
-      });
-    } catch {
-      (e) => console.log(e);
-    }
-  };
-  getHistories();
-
-  historiesContainer.addEventListener("click", async (e) => {
-    if (e.target.tagName === "BUTTON") {
-      const id = e.target.dataset.id;
-      try {
-        const { data } = await axios.delete(
-          `/api/components/routes/order-histories/delete.php?historyid=${id}&aid=${aid}`
-        );
-        if (data.success) {
-          getHistories();
-        }
+          historiesContainer.appendChild(orderCard);
+        });
       } catch {
         (e) => console.log(e);
       }
-    }
-  });
+    };
+    getHistories();
+
+    historiesContainer.addEventListener("click", async (e) => {
+      if (e.target.tagName === "BUTTON") {
+        const id = e.target.dataset.id;
+        try {
+          const { data } = await axios.delete(
+            `${
+              import.meta.env.VITE_API_URI
+            }/components/routes/order-histories/delete.php?historyid=${id}&aid=${aid}`
+          );
+          if (data.success) {
+            getHistories();
+          }
+        } catch {
+          (e) => console.log(e);
+        }
+      }
+    });
+  }
 }
 
-// ------------------------------------------ //
+export function HistoriesPage() {
+  return `
+  <div id="histories-container"></div>
+  `;
+}

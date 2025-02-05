@@ -13,12 +13,12 @@ export function insertNavbar(targetId, imgPath) {
           ${
             JSON.parse(localStorage.getItem("user"))?.role > 0
               ? `
-            <li><a href="/">HOME</a></li>
+            <li><a href="/" data-navigo>HOME</a></li>
               <li>
-              <a href="/src/pages/Admin/dashboard/dashboard.html">ADMIN</a>
+              <a href="/dashboard" data-navigo>ADMIN</a>
             </li>
             <li>
-              <a class="logout-btn" href="#">LOGOUT</a> 
+              <a class="logout-btn">LOGOUT</a> 
             </li>
                 `
               : ""

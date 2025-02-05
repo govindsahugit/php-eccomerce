@@ -4,17 +4,9 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://api.appfortest.freewebhostmost.com",
+        target: "http://localhost/menu-app/backend_/backend",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
-      },
-    },
-  },
-  build: {
-    rollupOptions: {
-      output: {
-        main: "./index.html",
-        login: "./login.html",
       },
     },
   },

@@ -1,9 +1,6 @@
 import axios from "axios";
-import { inserSideBar, insertNavbar } from "../../../components/Navbar.js";
-import { handleLogout } from "../../../components/Logout.js";
-import { handleSideBar } from "../../../components/HandleSideBar.js";
 
-document.addEventListener("DOMContentLoaded", () => {
+export function categoryJs() {
   const createForm = document.getElementById("create-form");
   const updateForm = document.getElementById("update-form");
   const tableBody = document.querySelector("#categories-table tbody");
@@ -11,12 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
   let categoryId = "";
   const mainContainer = document.querySelector(".container");
 
-  insertNavbar("navbar", "/logo.png");
-  handleLogout(document.querySelector("#navbar"));
-  inserSideBar("side-bar");
-  handleSideBar("navbar", "side-close-btn");
-
-  if (JSON.parse(localStorage.getItem("user"))?.role !== 2) {
+  if (JSON.parse(localStorage.getItem("user"))) {
+    if (JSON.parse(localStorage.getItem("user"))?.role < 2) {
+      mainContainer.innerHTML = `<h1>You are not authorized to view this page</h1>`;
+      return;
+    }
+  } else {
     mainContainer.innerHTML = `<h1>You are not authorized to view this page</h1>`;
     return;
   }
@@ -25,7 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
   async function fetchCategories() {
     try {
       const response = await fetch(
-        "/api/components/routes/categories/categories.php"
+        `${
+          import.meta.env.VITE_API_URI
+        }/components/routes/categories/categories.php`
       );
       const result = await response.json();
       // console.log(data);
@@ -34,17 +33,17 @@ document.addEventListener("DOMContentLoaded", () => {
         result.data.forEach((category, i) => {
           const row = document.createElement("tr");
           row.innerHTML = `
-                          <td>${i + 1}.</td>
-                          <td>${category.name}</td>
-                          <td class="actions">
-                              <button class="update" dataid="${
-                                category.id
-                              }">Update</button>
-                              <button class="delete" dataid="${
-                                category.id
-                              }">Delete</button>
-                          </td>
-                      `;
+                            <td>${i + 1}.</td>
+                            <td>${category.name}</td>
+                            <td class="actions">
+                                <button class="update" dataid="${
+                                  category.id
+                                }">Update</button>
+                                <button class="delete" dataid="${
+                                  category.id
+                                }">Delete</button>
+                            </td>
+                        `;
           tableBody.appendChild(row);
         });
       } else {
@@ -61,7 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       const requestData = { aid, name: createForm[0].value };
       const { data } = await axios.post(
-        `/api/components/routes/categories/create.php`,
+        `${
+          import.meta.env.VITE_API_URI
+        }/components/routes/categories/create.php`,
         requestData
       );
       if (data.success) {
@@ -80,7 +81,9 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const requestData = { aid };
       const { data } = await axios.delete(
-        `/api/components/routes/categories/delete.php?id=${id}`,
+        `${
+          import.meta.env.VITE_API_URI
+        }/components/routes/categories/delete.php?id=${id}`,
         {
           params: requestData,
         }
@@ -116,7 +119,9 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       const requestData = { aid, name: updateForm[0].value };
       const { data } = await axios.post(
-        `/api/components/routes/categories/update.php?id=${categoryId}`,
+        `${
+          import.meta.env.VITE_API_URI
+        }/components/routes/categories/update.php?id=${categoryId}`,
         requestData
       );
       if (data.success) {
@@ -135,4 +140,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initial fetch of categories
   fetchCategories();
-});
+}
+
+export function categoryPage() {
+  return `
+    <br />
+    <div class="container">
+      <h1>Manage Categories</h1>
+      <br />
+      <!-- Category Creation Form -->
+      <form id="create-form">
+        <input
+          type="text"
+          id="create-name"
+          name="categoryName"
+          placeholder="Create new category"
+          required />
+        <button type="submit">Create</button>
+      </form>
+
+      <!-- Category Creation Form -->
+      <form id="update-form">
+        <input
+          type="text"
+          id="category-name"
+          name="categoryName"
+          placeholder="Update category"
+          required />
+        <button type="submit">Update</button>
+      </form>
+
+      <!-- Categories Table -->
+      <h2>All Categories</h2>
+      <table id="categories-table">
+        <thead>
+          <tr>
+            <th>S.N</th>
+            <th>Category Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Categories will be dynamically added here -->
+        </tbody>
+      </table>
+    </div>
+    <!-- <script type="module" src="categories.js"></script> -->
+    `;
+}
