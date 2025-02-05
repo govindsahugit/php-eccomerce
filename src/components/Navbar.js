@@ -34,6 +34,8 @@ export function insertNavbar(targetId, imgPath) {
             <span class="mobile-only" id="cart-toggle">
   🛒Cart(<span class="cart-count">${
     JSON.parse(localStorage.getItem("cart"))?.length
+      ? JSON.parse(localStorage.getItem("cart"))?.length
+      : 0
   }</span>)
 </span>
             `
@@ -58,14 +60,16 @@ export function insertNavbar(targetId, imgPath) {
     }
   });
 
-  const closeBtn = document.querySelector(".close-btn");
-  closeBtn?.addEventListener("click", () => {
-    gsap.to("#cart-container-wrapper", {
-      transform: "translateX(100%)",
-    });
-    gsap.to(".close-btn", {
-      transform: "translateX(100%)",
-    });
+  const closeBtn = document.querySelector("#app");
+  closeBtn?.addEventListener("click", (e) => {
+    if (e.target.classList.contains("ri-close-large-line")) {
+      gsap.to("#cart-container-wrapper", {
+        transform: "translateX(100%)",
+      });
+      gsap.to(".close-btn", {
+        transform: "translateX(100%)",
+      });
+    }
   });
 
   if (targetElement) {
@@ -81,11 +85,13 @@ export function inserSideBar(targetId) {
         <i class="ri-close-large-line"></i>
       </div>
       <div class="side-links">
-        <a href="/">HOME</a>
+        <a data-navigo href="/">HOME</a>
         <a class="side-cart">CART(<span class="cart-count">${
           JSON.parse(localStorage.getItem("cart"))?.length
+            ? JSON.parse(localStorage.getItem("cart"))?.length
+            : 0
         }</span>)</a>
-        <a href="/src/pages/Admin/dashboard/dashboard.html">ADMIN</a>
+        <a href="/dashboard" data-navigo>ADMIN</a>
         <a class="logout-btn">LOGOUT</a>
       </div>
   `;

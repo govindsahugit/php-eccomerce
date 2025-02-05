@@ -6,6 +6,7 @@ export function HomeJs() {
   const products = document.getElementById("products-container");
   const cartContainer = document.getElementById("cart-container");
   let activeCategory = "";
+  let cartCountEle = document.querySelector(".cart-count");
 
   // Fetch all categories
   const fetchCategories = async () => {
