@@ -85,14 +85,14 @@ export function inserSideBar(targetId) {
         <i class="ri-close-large-line"></i>
       </div>
       <div class="side-links">
-        <a data-navigo href="/">HOME</a>
+        <a class="side-link" data-navigo href="/">HOME</a>
         <a class="side-cart">CART(<span class="cart-count">${
           JSON.parse(localStorage.getItem("cart"))?.length
             ? JSON.parse(localStorage.getItem("cart"))?.length
             : 0
         }</span>)</a>
-        <a href="/dashboard" data-navigo>ADMIN</a>
-        <a class="logout-btn">LOGOUT</a>
+        <a class="side-link" href="/dashboard" data-navigo>ADMIN</a>
+        <a class="logout-btn side-link">LOGOUT</a>
       </div>
   `;
 
@@ -116,7 +116,7 @@ export function inserSideBar(targetId) {
     }
     if (e.target.classList.contains("logout-btn")) {
       localStorage.removeItem("user");
-      window.location.href = "/src/pages/Auth/login.html";
+      window.location.href = "/login";
     }
   });
 }

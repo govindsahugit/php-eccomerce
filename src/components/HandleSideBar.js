@@ -3,6 +3,14 @@ import gsap from "gsap";
 export function handleSideBar(targetId, closeId) {
   const targetElement = document.getElementById(targetId);
   const closeBtn = document.getElementById(closeId);
+  const sideLinks = document.querySelectorAll(".side-link");
+  Array.from(sideLinks).forEach((link) => {
+    link.addEventListener("click", (e) => {
+      gsap.to("#side-bar", {
+        transform: "translateX(100%)",
+      });
+    });
+  });
   targetElement?.addEventListener("click", (e) => {
     if (e.target.classList.contains("menu-toggle")) {
       gsap.to("#side-bar", {

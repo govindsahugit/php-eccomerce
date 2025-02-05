@@ -176,6 +176,11 @@ export function HomeJs() {
       renderCart(newCart); // Render with the latest data
       setTotalAmount(newCart);
       cartCountEle.textContent = newCart.length;
+      if (!JSON.parse(localStorage.getItem("cart"))?.length) {
+        proceddEle.style.display = "none";
+      } else {
+        proceddEle.style.display = "inline-block";
+      }
     }
   });
 
@@ -194,6 +199,11 @@ export function HomeJs() {
       renderCart(newCart); // Render with the latest data
       setTotalAmount(newCart);
       cartCountEle.textContent = newCart.length;
+      if (!JSON.parse(localStorage.getItem("cart"))?.length) {
+        proceddEle.style.display = "none";
+      } else {
+        proceddEle.style.display = "inline-block";
+      }
     }
   });
 
@@ -216,6 +226,13 @@ export function HomeJs() {
 
   const proceedBtn = document.querySelector("#confirm-order");
   const orderFormContainer = document.querySelector(".order-form");
+  const proceddEle = document.querySelector("#place-order-ele");
+
+  if (!JSON.parse(localStorage.getItem("cart"))?.length) {
+    proceddEle.style.display = "none";
+  } else {
+    proceddEle.style.display = "inline-block";
+  }
 
   const customerName = document.querySelector("#customer-name");
   const customerPhone = document.querySelector("#phone-number");
@@ -223,6 +240,10 @@ export function HomeJs() {
   const orderBtn = document.querySelector("#order-submit-btn");
 
   proceedBtn.addEventListener("click", (e) => {
+    if (cartProducts.length === 0) {
+      alert("Cart is empty");
+      return;
+    }
     orderFormContainer.style.display = "flex";
   });
   orderFormContainer.addEventListener("click", (e) => {

@@ -50,6 +50,12 @@ export function dashboardPage() {
           </li>
         </ul>
       </main>
+      <div id="cart-container-wrapper">
+          <div id="cart-container"></div>
+        </div>
+        <div class="close-btn">
+          <i class="ri-close-large-line mobile-only"></i>
+        </div>
     </div>
     <!-- <script type="module" src="dashboard.js"></script> -->
   `;

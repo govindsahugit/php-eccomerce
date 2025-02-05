@@ -161,7 +161,7 @@ html {
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .nav-right {
     display: none;
     flex-direction: column;
