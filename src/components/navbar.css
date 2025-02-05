@@ -14,12 +14,11 @@ html {
   color: #fff;
   margin-top: 50px;
   overflow-x: hidden;
-  background-color: #333;
 }
 
 #bg-image {
-  height: 100vh;
-  height: 100svh;
+  /* height: 100vh; */
+  height: 100%;
   width: 100vw;
   background-image: url(/Leonardo_Phoenix_10_A_vibrant_and_appetizing_composition_featu_3.jpg);
   background-position: center;
