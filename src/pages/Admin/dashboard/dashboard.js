@@ -1,4 +1,11 @@
+import { inserSideCart } from "../../../components/HandleSideBar";
+
 export function dashboardJS() {
+  inserSideCart(
+    JSON.parse(localStorage.getItem("cart")) || [],
+    "cart-container"
+  );
+
   if (!JSON.parse(localStorage.getItem("user"))) {
     document.querySelector(".main-content").innerHTML =
       "<h1>You are not authorized to view this page</h1>";

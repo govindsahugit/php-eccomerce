@@ -45,3 +45,20 @@ export function inserSideCart(cartData, containerId) {
     cartContainer.innerHTML = "<p>Cart is empty</p>";
   }
 }
+
+export function renderSideCart(cartData, cartContainer) {
+  cartContainer.innerHTML = "";
+  if (cartData.length > 0) {
+    cartData.forEach((product) => {
+      const cartItem = document.createElement("div");
+      cartItem.classList.add("cart-product");
+      cartItem.innerHTML = `
+          <p data-id=${product.id}>${product.name}</p>
+          <p>${product.half_price ? product.half_price : product.full_price}</p>
+        `;
+      cartContainer.appendChild(cartItem);
+    });
+  } else {
+    cartContainer.innerHTML = "<p>Cart is empty</p>";
+  }
+}

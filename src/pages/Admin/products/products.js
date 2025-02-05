@@ -426,5 +426,11 @@ export function ProductPage() {
       </div>
       <div id="products-list" class="products-list"></div>
     </div>
+    <div id="cart-container-wrapper">
+          <div id="cart-container"></div>
+        </div>
+        <div class="close-btn">
+          <i class="ri-close-large-line mobile-only"></i>
+        </div>
   `;
 }

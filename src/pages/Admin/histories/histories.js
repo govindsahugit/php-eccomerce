@@ -89,5 +89,11 @@ export function HistoriesPageJs() {
 export function HistoriesPage() {
   return `
   <div id="histories-container"></div>
+  <div id="cart-container-wrapper">
+          <div id="cart-container"></div>
+        </div>
+        <div class="close-btn">
+          <i class="ri-close-large-line mobile-only"></i>
+        </div>
   `;
 }

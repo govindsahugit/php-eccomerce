@@ -193,7 +193,6 @@ export function HomeJs() {
         (product) => product.id !== productId
       );
       cartProducts = updatedCart;
-
       // Use the returned updated cart from setCart
       const newCart = setCart(updatedCart);
       renderCart(newCart); // Render with the latest data
