@@ -7,10 +7,13 @@ export function LoginPageJs() {
     const formData = new FormData(loginForm);
 
     try {
-      const response = await fetch("/api/components/routes/users/login.php", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URI}/components/routes/users/login.php`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       const res = await response.json();
 

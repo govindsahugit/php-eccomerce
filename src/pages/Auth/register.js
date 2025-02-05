@@ -8,7 +8,7 @@ export function RegisterPageJs() {
 
     try {
       const response = await fetch(
-        "/api/components/routes/users/register.php",
+        `${import.meta.env.VITE_API_URI}/components/routes/users/register.php`,
         {
           method: "POST",
           body: formData,
