@@ -29,7 +29,7 @@ let activeCategory = "";
 const fetchCategories = async () => {
   try {
     const { data } = await axios.get(
-      `https://api.appfortest.freewebhostmost.com/components/routes/categories/categories.php`
+      `/api/components/routes/categories/categories.php`
     );
     if (data?.success) {
       data?.data.forEach((category) => {
@@ -55,7 +55,7 @@ fetchCategories();
 const fetchProducts = async () => {
   try {
     const { data } = await axios.get(
-      `https://api.appfortest.freewebhostmost.com/components/routes/products/products.php`
+      `/api/components/routes/products/products.php`
     );
     if (data?.success) {
       const filteredData = data?.data.filter((product) =>
@@ -66,9 +66,9 @@ const fetchProducts = async () => {
         productElement.classList.add("product");
         productElement.innerHTML = `
           <div class="img-div">
-          <img src="https://api.appfortest.freewebhostmost.com/uploaded_files/${
-            product.image
-          }" alt="${product.name}" />
+          <img src="/api/uploaded_files/${product.image}" alt="${
+          product.name
+        }" />
           </div>
           <h3 class="product-name">${product.name}</h3>
           ${
@@ -258,7 +258,7 @@ orderBtn.addEventListener("click", async (e) => {
 
   try {
     const { data } = await axios.post(
-      "https://api.appfortest.freewebhostmost.com/components/routes/orders/create.php",
+      "/api/components/routes/orders/create.php",
       orderData
     );
     if (data.success) {
@@ -286,19 +286,19 @@ if (localStorage.getItem("customerAddress")) {
 
 customerName.addEventListener("change", (e) => {
   if (e.target.value === "authpage") {
-    window.location.href = "/src/pages/Auth/login.html";
+    window.location.href = "/login.html";
   }
   localStorage.setItem("customerName", e.target.value);
 });
 customerPhone.addEventListener("change", (e) => {
   if (e.target.value === "authpage") {
-    window.location.href = "/src/pages/Auth/login.html";
+    window.location.href = "/login.html";
   }
   localStorage.setItem("customerPhone", e.target.value);
 });
 customerAddress.addEventListener("change", (e) => {
   if (e.target.value === "authpage") {
-    window.location.href = "/src/pages/Auth/login.html";
+    window.location.href = "/login.html";
   }
   localStorage.setItem("customerAddress", e.target.value);
 });
