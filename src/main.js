@@ -22,6 +22,8 @@ import {
   HistoriesPageJs,
 } from "./pages/Admin/histories/histories.js";
 import { UserPage, UserPageJs } from "./pages/Admin/users/users.js";
+import { LoginPage, LoginPageJs } from "./pages/Auth/login.js";
+import { RegisterPage, RegisterPageJs } from "./pages/Auth/register.js";
 
 insertNavbar("navbar", "/logo.png");
 inserSideBar("side-bar");
@@ -78,6 +80,16 @@ window.addEventListener("DOMContentLoaded", (e) => {
       app.innerHTML = "";
       app.innerHTML = UserPage();
       UserPageJs();
+    })
+    .on("/login", () => {
+      app.innerHTML = "";
+      app.innerHTML = LoginPage();
+      LoginPageJs();
+    })
+    .on("/register", () => {
+      app.innerHTML = "";
+      app.innerHTML = RegisterPage();
+      RegisterPageJs();
     });
 
   router.resolve();

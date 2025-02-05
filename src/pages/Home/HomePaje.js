@@ -274,19 +274,19 @@ export function HomeJs() {
 
   customerName.addEventListener("change", (e) => {
     if (e.target.value === "authpage") {
-      window.location.href = "/src/pages/Auth/login.html";
+      window.location.href = "/login";
     }
     localStorage.setItem("customerName", e.target.value);
   });
   customerPhone.addEventListener("change", (e) => {
     if (e.target.value === "authpage") {
-      window.location.href = "/src/pages/Auth/login.html";
+      window.location.href = "/login";
     }
     localStorage.setItem("customerPhone", e.target.value);
   });
   customerAddress.addEventListener("change", (e) => {
     if (e.target.value === "authpage") {
-      window.location.href = "/src/pages/Auth/login.html";
+      window.location.href = "/login";
     }
     localStorage.setItem("customerAddress", e.target.value);
   });

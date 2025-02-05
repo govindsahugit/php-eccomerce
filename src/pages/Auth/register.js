@@ -1,34 +1,67 @@
-import { handleSideBar } from "../../components/HandleSideBar.js";
-import { handleLogout } from "../../components/Logout.js";
-import { inserSideBar, insertNavbar } from "../../components/Navbar.js";
+export function RegisterPageJs() {
+  const registerForm = document.getElementById("registerForm");
 
-const registerForm = document.getElementById("registerForm");
+  registerForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
 
-insertNavbar("navbar", "/logo.png");
-handleLogout(document.querySelector("#navbar"));
-inserSideBar("side-bar");
-handleSideBar("navbar", "side-close-btn");
+    const formData = new FormData(registerForm);
 
-registerForm.addEventListener("submit", async function (event) {
-  event.preventDefault();
+    try {
+      const response = await fetch(
+        "/api/components/routes/users/register.php",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
-  const formData = new FormData(registerForm);
+      const res = await response.json();
 
-  try {
-    const response = await fetch("/api/components/routes/users/register.php", {
-      method: "POST",
-      body: formData,
-    });
-
-    const res = await response.json();
-
-    if (res.success) {
-      window.location.href = "/src/pages/Auth/login.html";
-    } else {
-      alert(res.message);
-      return;
+      if (res.success) {
+        window.location.href = "/src/pages/Auth/login.html";
+      } else {
+        alert(res.message);
+        return;
+      }
+    } catch {
+      (e) => console.log(e);
     }
-  } catch {
-    (e) => console.log(e);
-  }
-});
+  });
+}
+
+export function RegisterPage() {
+  return `
+  <main>
+      <div class="auth-container">
+        <h1>User Registration</h1>
+        <form id="registerForm">
+          <label for="name">Full Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter your full name"
+            required />
+          <label for="phone">Phone Number</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="Enter your phone number"
+            required />
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            required />
+          <button type="submit">Register</button>
+        </form>
+        <a href="/src/pages/Auth/login.html" id="bottom-link">
+          Already have an account? <span>Login account.</span>
+        </a>
+      </div>
+    </main>
+  `;
+}
