@@ -234,6 +234,12 @@
 
 /* ------------------------------------------ */
 
+@media (max-width: 400px) {
+  #product-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 1000px) {
   .mobile-only {
     display: inline-block;
