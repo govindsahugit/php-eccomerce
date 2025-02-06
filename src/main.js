@@ -25,15 +25,6 @@ import { UserPage, UserPageJs } from "./pages/Admin/users/users.js";
 import { LoginPage, LoginPageJs } from "./pages/Auth/login.js";
 import { RegisterPage, RegisterPageJs } from "./pages/Auth/register.js";
 
-if (window.screenY === 0) {
-  // Scroll down 1px to hide the address bar on mobile
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      window.scrollTo(0, 15);
-    }, 0);
-  });
-}
-
 insertNavbar("navbar", "/logo.png");
 inserSideBar("side-bar");
 handleSideBar("navbar", "side-close-btn");
@@ -64,7 +55,7 @@ function enterFullscreen() {
   }
 }
 
-enterFullscreen();
+window.addEventListener("touchstart", enterFullscreen);
 
 // --------------------------------------------------  //
 // Routing operations
