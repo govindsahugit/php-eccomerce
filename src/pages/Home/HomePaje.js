@@ -175,6 +175,7 @@ export function HomeJs() {
       cartProducts = newCart;
       renderCart(newCart); // Render with the latest data
       setTotalAmount(newCart);
+      console.log(newCart);
       cartCountEle.textContent = newCart.length;
       if (!JSON.parse(localStorage.getItem("cart"))?.length) {
         proceddEle.style.display = "none";
@@ -212,7 +213,7 @@ export function HomeJs() {
     totalAmountElement.textContent = 0;
     cartData.forEach((product) => {
       let price = product.half_price ? product.half_price : product.full_price;
-      price = parseInt(price.substring(price.length - 3, price.length));
+      price = parseInt(price.substring(price.length > 8 ? 8 : 3, price.length));
       totalAmount += price;
     });
     totalAmountElement.textContent = totalAmount;
