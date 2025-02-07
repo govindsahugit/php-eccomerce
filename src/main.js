@@ -38,25 +38,6 @@ if (cartCountEle) {
   cartCountEle.textContent = JSON.parse(localStorage.getItem("cart"))?.length;
 }
 
-// Request fullscreen on a user gesture (e.g., button click)
-function enterFullscreen() {
-  const element = document.documentElement; // Target the entire page
-  if (element.requestFullscreen) {
-    element.requestFullscreen();
-  } else if (element.mozRequestFullScreen) {
-    // Firefox
-    element.mozRequestFullScreen();
-  } else if (element.webkitRequestFullscreen) {
-    // Chrome/Safari
-    element.webkitRequestFullscreen();
-  } else if (element.msRequestFullscreen) {
-    // IE/Edge
-    element.msRequestFullscreen();
-  }
-}
-
-window.addEventListener("touchstart", enterFullscreen);
-
 // --------------------------------------------------  //
 // Routing operations
 
